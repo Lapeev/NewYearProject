@@ -10,8 +10,8 @@ export const test = () => {
     const favoriteGallery = document.querySelector('.main__section_favorite');
     const modalBack = document.querySelector('.popup__svg_back');
     const modalNext = document.querySelector('.popup__svg_next');
-    const allFavorite = Array.from(document.querySelectorAll('.main__img_favorite'));
-    const allMain = Array.from(document.querySelectorAll('.main__img_main'));
+
+
     const find = document.querySelector('.header__button');
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
@@ -57,6 +57,7 @@ export const test = () => {
 
     function previouse() {
         if (baseGallery.classList.contains('d-none')) {
+            const allFavorite = Array.from(document.querySelectorAll('.main__img_favorite'));
             const urls = allFavorite.map(e => e.src);
             const index = urls.indexOf(popupImg.src);
             if (index === 0) {
@@ -65,6 +66,7 @@ export const test = () => {
                 popupImg.src = urls[index - 1];
             }
         } else {
+            const allMain = Array.from(document.querySelectorAll('.main__img_main'));
             const urls = allMain.map(e => e.src);
             const index = urls.indexOf(popupImg.src);
             if (index === 0) {
@@ -77,6 +79,7 @@ export const test = () => {
 
     function next() {
         if (baseGallery.classList.contains('d-none')) {
+            const allFavorite = Array.from(document.querySelectorAll('.main__img_favorite'));
             const urls = allFavorite.map(e => e.src);
             const index = urls.indexOf(popupImg.src);
             if (index === urls.length - 1) {
@@ -85,6 +88,7 @@ export const test = () => {
                 popupImg.src = urls[index + 1];
             }
         } else {
+            const allMain = Array.from(document.querySelectorAll('.main__img_main'));
             const urls = allMain.map(e => e.src);
             const index = urls.indexOf(popupImg.src);
             if (index === urls.length - 1) {
