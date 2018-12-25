@@ -35,7 +35,7 @@
     margin: 0 auto;
 }
 .popup__blur {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -48,8 +48,8 @@
     z-index: 999;
 }
 .popup__img {
-    width: 80%;
-    max-height: 70%;
+    width: auto;
+    height: 150px;
     margin-bottom: 15px;
 }
 .popup__nav {
