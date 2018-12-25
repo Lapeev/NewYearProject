@@ -1,0 +1,19 @@
+@media (min-width: 1170px) {
+    .main__section {
+        width: 900px;
+    }
+
+    .main__gallery {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .popup__img {
+        width: auto;
+        height: 408px;
+        margin-bottom: 15px;
+    }
+    .main__item {
+        margin-right: 15px;
+    }
+}

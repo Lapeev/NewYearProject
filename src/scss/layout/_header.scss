@@ -1,0 +1,60 @@
+body {
+    font-family: $fonts;
+    position: relative;
+}
+.button {
+    @extend %button;
+}
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 30px;
+}
+.header__head {
+    margin: 0 auto;
+}
+.heder__logo {
+    display: block;
+}
+.header__img {
+    display: block;
+    width: 302px;
+    height: auto;
+    margin-bottom: 47px;
+}
+.header__favourites {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+.header__svg {
+    width: 14px;
+    height: 14px;
+    fill: map-get($color, violet);
+}
+.header__favourite {
+    color: map-get($color, violet);
+    font-size: 1rem;
+    margin-left: 12px;
+}
+.header__search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.header__input {
+    border-radius: 10px;
+    border: 1px solid map-get($color, grey);
+    height: 25px;
+    color: map-get($color, grey);
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    padding: 0 15px;
+    width: 300px;
+    margin-bottom: 10px;
+}

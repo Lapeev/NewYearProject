@@ -1,0 +1,29 @@
+$fonts: 'Roboto', 'Comfortaa', sans-serif;
+$roboto-regular: 'Roboto-Regular';
+$comforta: 'Comfortaa';
+$color: (
+    white: #ffffff,
+    black: #000000,
+    violet:  #673ab7,
+    green: #cddc39,
+    grey: #6d6e71,
+    light-grey: #d1d3d4,
+);
+%button {
+    border-radius: 10px;
+    height: 25px;
+    background: map-get($color, green );
+    font-family: $comforta;
+    padding: 0 20px;
+    line-height: 25px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: map-get($color , white );
+    border: none;
+}
+%text_roboto {
+    font-family: $roboto-regular;
+}
+%text_comfortaa {
+    font-family: $comforta;
+}
