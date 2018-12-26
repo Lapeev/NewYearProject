@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#000000">
+    <meta name="copyright" content="Author">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="Application Name">
+    <meta name="msapplication-TileImage" content="images/favicons/144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>Find picture</title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header header_null">
+    <div class="header__head">
+        <a href="#" class="header__logo">
+            <img src="./img/logo.png" alt="some alt" class="header__img">
+        </a>
+    </div>
+    <div class="header__favourites header__favourites_null">
+        <svg class="header__svg">
+            <use href="img/sprite.svg#star"></use>
+        </svg>
+        <a href="#" class="header__favourite">Избранное</a>
+    </div>
+    <div class="header__search">
+        <input type="text" class="header__input" placeholder="Введите поисковый запрос">
+        <button class="button header__button">Поиск</button>
+    </div>
+</header>
+
+<main class="main">
+    <section class="main__section main__section_base d-none">
+        <ul class="main__gallery main__gallery_base">
+            <li class="main__item">
+                <img src="./img/test/1.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/2.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/3.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/4.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/5.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/6.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/7.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/8.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/9.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/10.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/11.png" alt="some alt" class="main__img main__img_main">
+            </li>
+            <li class="main__item">
+                <img src="./img/test/12.png" alt="some alt" class="main__img main__img_main">
+            </li>
+        </ul>
+
+        <button class="main__button button">Показать еще</button>
+    </section>
+
+    <section class="main__popup popup d-none">
+        <div class="popup__blur">
+            <img src="" alt="some alt" class="popup__img">
+            <div class="popup__nav">
+                <svg class="popup__svg popup__svg_back">
+                    <use href="img/sprite.svg#back"></use>
+                </svg>
+                <svg class="popup__svg popup__svg_next">
+                    <use href="img/sprite.svg#next"></use>
+                </svg>
+                <svg class="popup__svg popup__svg_star">
+                    <use href="img/sprite.svg#star"></use>
+                </svg>
+                <svg class="popup__svg popup__svg_close">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="main__section main__section_favorite d-none">
+        <h2 class="main__favorite">
+            Избранное
+        </h2>
+
+        <ul class="main__gallery main__gallery_favorite">
+            <li class="main__item main__item_favorite">
+                <img src="./img/test/1.png" alt="some alt" class="main__img main__img_favorite">
+                <svg class="gallery__svg gallery__svg_delete">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </li>
+            <li class="main__item main__item_favorite">
+                <img src="./img/test/2.png" alt="some alt" class="main__img main__img_favorite">
+                <svg class="gallery__svg gallery__svg_delete">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </li>
+            <li class="main__item main__item_favorite">
+                <img src="./img/test/3.png" alt="some alt" class="main__img main__img_favorite">
+                <svg class="gallery__svg gallery__svg_delete">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </li>
+            <li class="main__item main__item_favorite">
+                <img src="./img/test/4.png" alt="some alt" class="main__img main__img_favorite">
+                <svg class="gallery__svg gallery__svg_delete">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </li>
+            <li class="main__item main__item_favorite">
+                <img src="./img/test/5.png" alt="some alt" class="main__img main__img_favorite">
+                <svg class="gallery__svg gallery__svg_delete">
+                    <use href="img/sprite.svg#close"></use>
+                </svg>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<script src="index.js"></script>
+</body>
+
+</html>
