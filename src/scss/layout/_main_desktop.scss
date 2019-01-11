@@ -2,7 +2,6 @@
     .main__section {
         width: 900px;
     }
-
     .main__gallery {
         flex-direction: row;
         flex-wrap: wrap;
@@ -13,7 +12,21 @@
         height: 408px;
         margin-bottom: 15px;
     }
+    .main__item:not(:nth-child(4n)) {
+        margin-right: 15px;
+    }
     .main__item {
+        margin-bottom: 0;
+    }
+    .main__item:nth-last-child(n + 5) {
+        margin-bottom: 15px;
+    }
+    .search__header {
+        flex-direction: row;
+    }
+    .search__input {
+        width: 450px;
+        margin-bottom: 0;
         margin-right: 15px;
     }
 }

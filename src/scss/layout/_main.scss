@@ -20,19 +20,22 @@
     width: 210px;
     border: 1px solid map-get($color , grey );
     background: map-get($color, black );
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 13px;
+    position: relative;
+    overflow: hidden;
 }
 .main__img {
-    max-width: 210px;
-    max-height: 122px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
 }
-.main__button {
+.main__more {
     display: block;
     margin: 0 auto;
+    margin-bottom: 30px;
 }
 .popup__blur {
     position: fixed;
@@ -61,7 +64,7 @@
     border-radius: 10px;
     background: map-get($color , violet );
 }
-.popup__svg {
+.popup__symbol {
     cursor: pointer;
 }
 .popup__svg_back, .popup__svg_next {
@@ -69,10 +72,13 @@
     width: 9px;
     fill: map-get($color , white );
 }
-.popup__svg_star {
-    height: 11px;
-    width: 11px;
-    fill: map-get($color, green );
+.popup__star {
+    color: map-get($color, white );
+    font-size: 25px;
+    line-height: 34px;
+}
+.popup__star_active {
+    color: map-get($color, green );
 }
 .popup__svg_close {
     width: 10px;
@@ -92,4 +98,22 @@
     top: 7px;
     z-index: 998;
     cursor: pointer;
+}
+.search__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.search__input {
+    border-radius: 10px;
+    border: 1px solid map-get($color, grey);
+    height: 25px;
+    color: map-get($color, grey);
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    padding: 0 15px;
+    width: 300px;
+    margin-bottom: 10px;
 }
