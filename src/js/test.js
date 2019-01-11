@@ -2,22 +2,19 @@ export const test = () => {
     const gallery = document.querySelector('.main__gallery_base');
     const galleryFavorite = document.querySelector('.main__gallery_favorite')
     const popup = document.querySelector('.main__popup');
-    const closePopup = document.querySelector('.popup__svg_close');
+    const closePopup = document.querySelector('.popup__button_close');
     const popupImg = document.querySelector('.popup__img');
     const favorite = document.querySelector('.header__favourite');
-    const favorites = document.querySelector('.header__favourites');
     const baseGallery = document.querySelector('.main__section_base');
     const favoriteGallery = document.querySelector('.main__section_favorite');
-    const modalBack = document.querySelector('.popup__svg_back');
-    const modalNext = document.querySelector('.popup__svg_next');
+    const modalBack = document.querySelector('.popup__button_back');
+    const modalNext = document.querySelector('.popup__button_next');
     const input = document.querySelector('.search__input');
     const more = document.querySelector('.main__more');
-    const addFavorite = document.querySelector('.popup__star');
+    const addFavorite = document.querySelector('.popup__button_star');
     const search = document.querySelector('.search');
 
     const find = document.querySelector('.search__button');
-    const header = document.querySelector('.header');
-    const main = document.querySelector('.main');
     let page;
 
     gallery.addEventListener('click', showModal);
@@ -47,13 +44,13 @@ export const test = () => {
             popupImg.src = target.getAttribute('data-full');
             popupImg.dataset.small = target.src;
             if (baseGallery.classList.contains('d-none')) {
-                addFavorite.classList.add('popup__star_active');
+                addFavorite.classList.add('popup__button_star-active');
             }
             else {
                 tellingIfInStorage();
             }
             popup.classList.remove('d-none');
-        } else if (target.nodeName === 'svg') {
+        } else if (target.nodeName === 'BUTTON') {
             if (LOCALSTORAGE && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {
                 const storageRemoveDOM = target.parentNode.firstElementChild.outerHTML;
                 const innerStorage = localStorage.getItem('doms').split(',');
@@ -75,9 +72,7 @@ export const test = () => {
         galleryFavorite.addEventListener('click', showModal);
         if (LOCALSTORAGE && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {
             const arrDoms = localStorage.getItem("doms").split(',');
-            const doms = arrDoms.map(e => `<li class="main__item main__item_favorite">${e}<svg class="gallery__svg gallery__svg_delete">
-            <use href="img/sprite.svg#close"></use>
-        </svg></li>`);
+            const doms = arrDoms.map(e => `<li class="main__item main__item_favorite">${e}<button class="favorite__button">&#10006;</button></li>`);
             galleryFavorite.innerHTML = doms.reverse().join('');
         }
     }
@@ -203,11 +198,11 @@ export const test = () => {
                 domElementClone.classList.add('main__img_favorite');
                 if (localStorage.getItem("doms") == null || localStorage.getItem("doms") == '') {
                     localStorage.setItem('doms', `${domElementClone.outerHTML}`);
-                    addFavorite.classList.add('popup__star_active');
+                    addFavorite.classList.add('popup__button_star-active');
                 }
                 if (!localStorage.getItem('doms').includes(`${domElementClone.outerHTML}`)) {
                     localStorage.setItem('doms', `${localStorage.getItem("doms")},${domElementClone.outerHTML}`);
-                    addFavorite.classList.add('popup__star_active');
+                    addFavorite.classList.add('popup__button_star-active');
                 }
             }
         }
@@ -216,11 +211,11 @@ export const test = () => {
     function tellingIfInStorage() {
         if (LOCALSTORAGE && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {
             const stringDoms = localStorage.getItem("doms");
-            if (addFavorite.classList.contains('popup__star_active')) {
-                addFavorite.classList.remove('popup__star_active');
+            if (addFavorite.classList.contains('popup__button_star-active')) {
+                addFavorite.classList.remove('popup__button_star-active');
             }
             if (stringDoms.indexOf(popupImg.src) !== -1) {
-                addFavorite.classList.add('popup__star_active');
+                addFavorite.classList.add('popup__button_star-active');
             }
         }
     }
