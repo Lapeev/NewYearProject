@@ -9,16 +9,13 @@ body {
     outline: none;
 }
 .header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     padding-top: 40px;
 }
 .header__head {
-    margin: 0 auto;
+    text-align: center;
 }
 .header__logo {
-    display: block;
+    display: inline-block;
 }
 .header__img {
     display: block;

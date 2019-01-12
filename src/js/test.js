@@ -13,8 +13,9 @@ export const test = () => {
     const more = document.querySelector('.main__more');
     const addFavorite = document.querySelector('.popup__button_star');
     const search = document.querySelector('.search');
-
+    const modal = document.querySelector('.popup__blur');
     const find = document.querySelector('.search__button');
+    const body = document.querySelector('body');
     let page;
 
     gallery.addEventListener('click', showModal);
@@ -25,6 +26,8 @@ export const test = () => {
     find.addEventListener('click', showFind);
     more.addEventListener('click', showFind);
     addFavorite.addEventListener('click', addingFavorite);
+    modal.addEventListener('click', closeModal);
+    document.addEventListener('keypress', showFindEnter);
 
     const LOCALSTORAGE = (w => {
         if (!w) return;
@@ -45,11 +48,11 @@ export const test = () => {
             popupImg.dataset.small = target.src;
             if (baseGallery.classList.contains('d-none')) {
                 addFavorite.classList.add('popup__button_star-active');
-            }
-            else {
+            } else {
                 tellingIfInStorage();
             }
             popup.classList.remove('d-none');
+            body.style.overflowY = 'hidden';
         } else if (target.nodeName === 'BUTTON') {
             if (LOCALSTORAGE && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {
                 const storageRemoveDOM = target.parentNode.firstElementChild.outerHTML;
@@ -60,9 +63,12 @@ export const test = () => {
         }
     }
 
-    function closeModal() {
-        popup.classList.add('d-none');
-        popupImg.src = '';
+    function closeModal(e) {
+        if (e.target.classList.contains('popup__blur') || e.target.classList.contains('popup__button_close')) {
+            popup.classList.add('d-none');
+            popupImg.src = '';
+            body.style.overflowY = 'initial';
+        }
     }
 
     function showFavorite() {
@@ -129,17 +135,22 @@ export const test = () => {
         }
     }
 
+    function showFindEnter (e) {
+        if (e.keyCode == 13)
+        showFind(e);
+    }
+
     function showFind(e) {
-        e.preventDefault();
-        if (!gallery.hasAttribute('data-category') || gallery.getAttribute('data-category') == input.value) {
-            if (!gallery.hasAttribute('data-category')) gallery.dataset.category = input.value;
-            fetchFunction();
-        } else {
-            gallery.dataset.category = input.value;
-            gallery.innerHTML = '';
-            page = 1;
-            fetchFunction();
-        }
+        e.preventDefault();       
+            if (!gallery.hasAttribute('data-category') || gallery.getAttribute('data-category') == input.value) {
+                if (!gallery.hasAttribute('data-category')) gallery.dataset.category = input.value;
+                fetchFunction();
+            } else {
+                gallery.dataset.category = input.value;
+                gallery.innerHTML = '';
+                page = 1;
+                fetchFunction();
+            }
     }
 
     function fetchFunction() {
