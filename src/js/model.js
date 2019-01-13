@@ -1,6 +1,7 @@
 import * as auxiliary from './auxiliary/auxiliary';
 
 export default class Model {
+    
     constructor(view) {
         this._view = view;
         this.page;
@@ -18,14 +19,14 @@ export default class Model {
                 this.tellingIfInStorage();
             }
             this._view.refs.popup.classList.remove('d-none');
-            this._view.body.style.overflowY = 'hidden';
+            this._view.refs.body.style.overflowY = 'hidden';
         } else if (target.nodeName === 'BUTTON') {
             if (auxiliary.LOCALSTORAGE.isActive && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {
                 const storageRemoveDOM = target.parentNode.firstElementChild.outerHTML;
                 const innerStorage = localStorage.getItem('doms').split(',');
                 localStorage.setItem('doms', `${innerStorage.filter(e => e !== storageRemoveDOM)}`);
             }
-            this.removeChild(target.parentNode);
+            target.parentNode.outerHTML = '';
         }
     }
     fetchFunction() {
@@ -36,7 +37,7 @@ export default class Model {
             lang: 'ru',
             image_type: 'photo',
             per_page: 12,
-            page: `${this.page}`
+            page: this.page
         }
         fetch(`https://pixabay.com/api/?key=${data.key}&q=${data.q}&lang=${data.lang}&image_type=${data.image_type}&page=${data.page}&per_page=${data.per_page}`)
             .then(res => {
@@ -45,9 +46,9 @@ export default class Model {
                 }
                 throw new Error(`Error while fetching: ${res.statusText}`);
             })
-            .then(responce => {
-                page++;
-                this._view.createDOM(responce, data);
+            .then(responce => {                
+                this.page++;
+                this._view.createDOM(responce, data);                
             });
     }
     tellingIfInStorage() {
@@ -56,7 +57,7 @@ export default class Model {
             if (this._view.refs.addFavorite.classList.contains('popup__button_star-active')) {
                 this._view.refs.addFavorite.classList.remove('popup__button_star-active');
             }
-            if (stringDoms.indexOf(popupImg.src) !== -1) {
+            if (stringDoms.indexOf(this._view.refs.popupImg.src) !== -1) {
                 this._view.refs.addFavorite.classList.add('popup__button_star-active');
             }
         }

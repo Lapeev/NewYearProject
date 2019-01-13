@@ -4,14 +4,15 @@ export default class Controller {
         this._view = view;
         this._model = model;
 
-        this._view.refs.gallery.addEventListener('click', this._model.showModal.bind(this));
-        this._view.refs.closePopup.addEventListener('click', this._view.closeModal.bind(this));
+        this._view.refs.gallery.addEventListener('click', this._model.showModal.bind(this._model));
+        this._view.refs.closePopup.addEventListener('click', this._view.closeModal.bind(this._view));
+        this._view.refs.modal.addEventListener('click', this._view.closeModal.bind(this._view));
         this._view.refs.favorite.addEventListener('click', this.showFavorite.bind(this));
-        this._view.refs.modalBack.addEventListener('click', this._view.previouse.bind(this));
-        this._view.refs.modalNext.addEventListener('click', this._view.next.bind(this));
+        this._view.refs.modalBack.addEventListener('click', this.previouse.bind(this));
+        this._view.refs.modalNext.addEventListener('click', this.next.bind(this));
         this._view.refs.find.addEventListener('click', this.showFind.bind(this));
         this._view.refs.more.addEventListener('click', this.showFind.bind(this));
-        this._view.refs.addFavorite.addEventListener('click', this._view.addingFavorite.bind(this));
+        this._view.refs.addFavorite.addEventListener('click', this._view.addingFavorite.bind(this._view));
         document.addEventListener('keypress', this.showFindEnter.bind(this));
     }
     showFavorite() {
@@ -38,7 +39,59 @@ export default class Controller {
         }
     }
     showFindEnter (e) {
-        if (e.keyCode == 13)
-        this.showFind(e);
+        if (e.keyCode === 13)
+        {
+            this.showFind(e);
+        }
+    }
+    previouse() {
+        if (this._view.refs.baseGallery.classList.contains('d-none')) {
+            const allFavorite = Array.from(document.querySelectorAll('.main__img_favorite'));
+            const index = allFavorite.map(e => e.src).indexOf(this._view.refs.popupImg.getAttribute('data-small'));
+            if (index === 0) {
+                this._view.refs.popupImg.src = allFavorite[allFavorite.length - 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allFavorite[allFavorite.length - 1].src;
+            } else {
+                this._view.refs.popupImg.src = allFavorite[index - 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allFavorite[index - 1].src;
+            }
+        } else {
+            const allMain = Array.from(document.querySelectorAll('.main__img_main'));
+            const index = allMain.map(e => e.src).indexOf(this._view.refs.popupImg.getAttribute('data-small'));
+            if (index === 0) {
+                this._view.refs.popupImg.src = allMain[allMain.length - 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allMain[allMain.length - 1].src;
+                this._model.tellingIfInStorage();
+            } else {
+                this._view.refs.popupImg.src = allMain[index - 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allMain[index - 1].src;
+                this._model.tellingIfInStorage();
+            }
+        }
+    }
+    next() {
+        if (this._view.refs.baseGallery.classList.contains('d-none')) {
+            const allFavorite = Array.from(document.querySelectorAll('.main__img_favorite'));
+            const index = allFavorite.map(e => e.src).indexOf(this._view.refs.popupImg.getAttribute('data-small'));
+            if (index === allFavorite.length - 1) {
+                this._view.refs.popupImg.src = allFavorite[0].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allFavorite[0].src;
+            } else {
+                this._view.refs.popupImg.src = allFavorite[index + 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allFavorite[index + 1].src;
+            }
+        } else {
+            const allMain = Array.from(document.querySelectorAll('.main__img_main'));
+            const index = allMain.map(e => e.src).indexOf(this._view.refs.popupImg.getAttribute('data-small'));
+            if (index === allMain.length - 1) {
+                this._view.refs.popupImg.src = allMain[0].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allMain[0].src;
+                this._model.tellingIfInStorage();
+            } else {
+                this._view.refs.popupImg.src = allMain[index + 1].getAttribute('data-full');
+                this._view.refs.popupImg.dataset.small = allMain[index + 1].src;
+                this._model.tellingIfInStorage();
+            }
+        }
     }
 }
