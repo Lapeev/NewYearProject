@@ -10,7 +10,7 @@ export default class Controller {
         this._view.refs.favorite.addEventListener('click', this.showFavorite.bind(this));
         this._view.refs.modalBack.addEventListener('click', this.previouse.bind(this));
         this._view.refs.modalNext.addEventListener('click', this.next.bind(this));
-        this._view.refs.find.addEventListener('click', this.showFind.bind(this));
+        this._view.refs.find.addEventListener('click', this.showFindInput.bind(this));
         this._view.refs.more.addEventListener('click', this.showFind.bind(this));
         this._view.refs.addFavorite.addEventListener('click', this._view.addingFavorite.bind(this._view));
         document.addEventListener('keypress', this.showFindEnter.bind(this));
@@ -28,21 +28,26 @@ export default class Controller {
     }
     showFind(e) {
         e.preventDefault();
-        if (!this._view.refs.gallery.hasAttribute('data-category') || this._view.refs.gallery.getAttribute('data-category') == this._view.refs.input.value) {
-            if (!this._view.refs.gallery.hasAttribute('data-category')) this._view.refs.gallery.dataset.category = this._view.refs.input.value;
+        if (!this._view.refs.gallery.hasAttribute('data-category')) {
+            this._view.refs.gallery.dataset.category = this._view.refs.input.value;
             this._model.fetchFunction();
-        } else {
+        } else if (this._view.refs.gallery.hasAttribute('data-category') && this._view.refs.input.value !== '') {
             this._view.refs.gallery.dataset.category = this._view.refs.input.value;
             this._view.refs.gallery.innerHTML = '';
             this.page = 1;
             this._model.fetchFunction();
+        } else {
+            this._model.fetchFunction();
         }
     }
-    showFindEnter (e) {
-        if (e.keyCode === 13)
-        {
+    showFindEnter(e) {
+        if (e.keyCode === 13) {
             this.showFind(e);
         }
+    }
+    showFindInput(e) {
+        if (this._view.refs.input.value !== '')
+        this.showFind(e);
     }
     previouse() {
         if (this._view.refs.baseGallery.classList.contains('d-none')) {

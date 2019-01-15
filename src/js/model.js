@@ -1,10 +1,11 @@
 import * as auxiliary from './auxiliary/auxiliary';
 
 export default class Model {
-    
+
     constructor(view) {
         this._view = view;
         this.page;
+        this.input;
     }
 
     showModal(e) {
@@ -14,8 +15,7 @@ export default class Model {
             this._view.refs.popupImg.dataset.small = target.src;
             if (this._view.refs.baseGallery.classList.contains('d-none')) {
                 this._view.refs.addFavorite.classList.add('popup__button_star-active');
-            }
-            else {
+            } else {
                 this.tellingIfInStorage();
             }
             this._view.refs.popup.classList.remove('d-none');
@@ -30,26 +30,30 @@ export default class Model {
         }
     }
     fetchFunction() {
-        this.page == undefined ? this.page = 1 : this.page;
-        const data = {
-            key: '11172718-f6e56b8a08a6b762793b5fef6',
-            q: this._view.refs.input.value,
-            lang: 'ru',
-            image_type: 'photo',
-            per_page: 12,
-            page: this.page
+        if (this._view.refs.input.value !== '' || this.page >= 1) {
+            this.page == undefined ? this.page = 1 : this.page;
+            this.input = this._view.refs.input.value !== '' ? this._view.refs.input.value : this.input;
+            const data = {
+                key: '11172718-f6e56b8a08a6b762793b5fef6',
+                q: this.input,
+                lang: 'ru',
+                image_type: 'photo',
+                per_page: 12,
+                page: this.page
+            }
+            fetch(`https://pixabay.com/api/?key=${data.key}&q=${data.q}&lang=${data.lang}&image_type=${data.image_type}&page=${data.page}&per_page=${data.per_page}`)
+                .then(res => {
+                    if (res.status == 200) {
+                        return res.json();
+                    }
+                    throw new Error(`Error while fetching: ${res.statusText}`);
+                })
+                .then(responce => {
+                    this.page++;
+                    this._view.createDOM(responce, data);
+                });
+            this._view.refs.input.value = '';
         }
-        fetch(`https://pixabay.com/api/?key=${data.key}&q=${data.q}&lang=${data.lang}&image_type=${data.image_type}&page=${data.page}&per_page=${data.per_page}`)
-            .then(res => {
-                if (res.status == 200) {
-                    return res.json();
-                }
-                throw new Error(`Error while fetching: ${res.statusText}`);
-            })
-            .then(responce => {                
-                this.page++;
-                this._view.createDOM(responce, data);                
-            });
     }
     tellingIfInStorage() {
         if (auxiliary.LOCALSTORAGE.isActive && localStorage.getItem("doms") !== null && localStorage.getItem("doms") !== '') {

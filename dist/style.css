@@ -351,7 +351,8 @@ body {
   padding-top: 40px; }
 
 .header__head {
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 47px; }
 
 .header__logo {
   display: inline-block; }
@@ -359,8 +360,7 @@ body {
 .header__img {
   display: block;
   width: 302px;
-  height: auto;
-  margin-bottom: 47px; }
+  height: auto; }
 
 .header__favourites {
   position: absolute;
@@ -385,7 +385,8 @@ body {
 
 .main__section {
   width: 240px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding-bottom: 30px; }
 
 .main__favorite {
   font-size: 1rem;
@@ -397,7 +398,9 @@ body {
   width: 210px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto; }
+
+.main__gallery:not(:last-child) {
   margin-bottom: 30px; }
 
 .main__item {
@@ -419,8 +422,7 @@ body {
 
 .main__more {
   display: block;
-  margin: 0 auto;
-  margin-bottom: 30px; }
+  margin: 0 auto; }
 
 .popup__blur {
   position: fixed;
@@ -487,7 +489,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px; }
+  padding-bottom: 30px; }
 
 .search__input {
   border-radius: 10px;
